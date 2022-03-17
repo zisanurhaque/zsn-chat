@@ -1,13 +1,16 @@
 import {useEffect, useState} from 'react';
-import io from 'socket.io-client';
+import io from 'socket.io-client'; // Getting Module Socket-Client
 
 const socket = io.connect("https://zsn-chat.herokuapp.com/")
 
 const App = () => {
 
+    // States
     const [message, setMessage] = useState("");
     const [name, setName] = useState("")
     const [chat, setChat] = useState([])
+
+    // Handle Message Function
 
     const handleMessages = (e) => {
         e.preventDefault()
@@ -15,14 +18,14 @@ const App = () => {
             message: message,
             name: name
         }
-        socket.emit("chat", value)
+        socket.emit("chat", value) // Values sending to server
         setMessage("")
         setName(name)
     }
 
     useEffect(() => {
-        socket.on("display", (data) => {
-            setChat([...chat, data])
+        socket.on("display", (data) => { // Getting values from server
+            setChat([...chat, data]) // Storing Values In A State To Display Them In Client Side
         })
     })
 
