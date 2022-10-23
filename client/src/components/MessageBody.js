@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import io from 'socket.io-client'; // Getting Module Socket-Client
 
-const socket = io.connect("http://localhost:3001") 
+const socket = io.connect("https://zsn-chat.herokuapp.com/") 
 
 const MessageBody = ({user}) => {
 
